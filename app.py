@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template,send_from_directory
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -31,6 +31,10 @@ def d3Info():
 @app.route("/map/")
 def mapHome():
 	return render_template("mapIndex.html")
+	
+@app.route('/d3/<path:path>')
+def send_csv(path):
+    return send_from_directory('static', path)
 
 @app.route("/bb/")
 def bbhome():
